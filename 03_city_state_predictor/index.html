@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> 👀 City/State Predictor 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const cities = []; 
+fetch(endpoint)  //promise
+  .then(blob => blob.json())  // promise of relevant method/property
+  .then(data => cities.push(...data)); // push and "spread" into push function (data flattened into 1 array)
+
+function numberWithCommas(x) {
+    var numString = x.toString()
+    return numString.replace(/\B(?=(\d{3})+(?=$))/g, ",");
+}
+
+//calculate distance between 2 points, given latitude and longitude coordinates
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  var radlat1 = Math.PI * lat1/180
+  var radlat2 = Math.PI * lat2/180
+  var radlon1 = Math.PI * lon1/180
+  var radlon2 = Math.PI * lon2/180
+  var theta = lon1-lon2
+  var radtheta = Math.PI * theta/180
+  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist)
+  dist = dist * 180/Math.PI
+  dist = dist * 60 * 1.1515
+  dist = dist * 0.8684
+  return dist; 
+}
+
+function findMatches (wordToMatch, cities) {
+  return cities.filter(place => {
+    const regex = new RegExp(wordToMatch, 'gi'); // global, case-insensitive
+    return place.city.match(regex) || place.state.match(regex);
+  });
+}
+
+function displayMatches() {
+    const matchArray = findMatches(this.value, cities);
+    for (i = 0; i < matchArray.length; i++) {
+  matchArray[i]["distance"] = calculateDistance(matchArray[0]["latitude"],matchArray[0]["longitude"],matchArray[i]["latitude"],matchArray[i]["longitude"]);
+  }
+    const sortedMatchArray = matchArray.sort((a, b) => a.distance - b.distance);
+    //const popSortedMatchArray = sortedMatchArray.sort((a, b) => b.population - a.population);
+    const html = sortedMatchArray.map(place => {
+        const regex = new RegExp(this.value, 'gi');
+        const cityName = place.city.replace(regex, `<span class="hl">${this.
+            value}</span>`);
+        const stateName = place.state.replace(regex, `<span class="hl">${this.
+            value}</span>`);
+          return `
+            <li> 
+              <div class="name">${cityName}, ${stateName}</div>
+              <div class="population">${numberWithCommas(place.population)}</div>
+            </li> 
+            `; 
+    }).join(''); 
+    suggestions.innerHTML = html;
+  }
+  
+  const searchInput = document.querySelector('.search');
+  const suggestions = document.querySelector('.suggestions');
+
+  searchInput.addEventListener('change', displayMatches)
+  searchInput.addEventListener('keyup', displayMatches)
+
+</script>
+</body>
+</html>
