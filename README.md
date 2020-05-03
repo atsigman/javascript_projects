@@ -18,3 +18,11 @@ Projects:
 5)Custom Video Player: 
  Video player with progress bar, volume and speed controls, and full screen button. 
 
+6)Mouse Move Shadow: 
+  Mouse-position-sensitive colored shadows of editable text. 
+
+7)Filter Webcam Video: 
+  User-selected filter (Normal, Grayscale, Red Effect, Blue Effect, RGB Split [with "ghost effect"], and Green Screen
+  applied to live video. Photo of filtered video may be taken and downloaded within the app.
+
+  More to come! 
