@@ -25,4 +25,7 @@ Projects:
   User-selected filter (Normal, Grayscale, Red Effect, Blue Effect, RGB Split [with "ghost effect"], and Green Screen
   applied to live video. Photo of filtered video may be taken and downloaded within the app.
 
-  More to come! 
+8)Speech Synthesis: 
+Polyglot speech synthesis app with multiple available voices and adjustable pitch and speed. 
+  
+  
