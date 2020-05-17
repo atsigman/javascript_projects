@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro Timer++</title>
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Pomodoro Timer++</h1> 
+  <div class="timer">
+    <div class="timer__controls">
+      <button data-time="30" class="timer__button">30 Sec</button>
+      <button data-time="1500" class="timer__button">Independent Work 25 Min</button>
+      <button data-time="1800" class="timer__button">Meeting 30 Min</button>
+      <button data-time="300" class="timer__button">Take 5</button>
+      <button data-time="600" class="timer__button">Snack 10 Min</button>
+      <button data-time="3600" class="timer__button">Lunch Hour</button>
+      <form name="customForm" id="custom">
+        <input type="text" name="minutes" placeholder="Enter Minutes">
+      </form>
+    </div>
+    <div class="display">
+      <h1 class="display__time-left"></h1>
+      <p class="display__end-time"></p>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

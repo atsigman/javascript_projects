@@ -30,5 +30,8 @@ Projects:
 
 9)Speech Synthesis: 
 Polyglot speech synthesis app with multiple available voices and adjustable pitch and speed. 
+
+10)Pomodoro Timer++: 
+Countdown timer with default durations for various activities and custom form for entering durations. 
   
   
