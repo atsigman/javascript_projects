@@ -33,5 +33,7 @@ Polyglot speech synthesis app with multiple available voices and adjustable pitc
 
 10)Pomodoro Timer++: 
 Countdown timer with default durations for various activities and custom form for entering durations. 
+11) Whack-A-Mole: 
+Whack-A-Mole game with 9 levels of increasing difficulty. 
   
   
